@@ -1,0 +1,25 @@
+{
+    "cluster": [],
+    "indices": [
+        {
+            "field_security": {
+                "grant": [
+                    "*"
+                ]
+            },
+            "names": [
+                "@@INDEX_NAME@@-*"
+            ],
+            "privileges": [
+                "all"
+            ]
+        }
+    ],
+    "metadata": {},
+    "run_as": [
+        "@@RUN_AS_USER_NAME@@"
+    ],
+    "transient_metadata": {
+        "enabled": true
+    }
+}

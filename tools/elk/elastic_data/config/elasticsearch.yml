@@ -1,0 +1,29 @@
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+discovery.zen.minimum_master_nodes: 1
+xpack.license.self_generated.type: trial
+
+### This section is for Alerting email action
+#IS_EMAIL_ACTION_START
+# xpack.notification.email.account:
+#     exchange_account:
+#         profile: outlook
+#         email_defaults:
+#             from: @@EXCHANGE_MAIL_FROM@@
+#         smtp:
+#             auth: true
+#             starttls.enable: false
+#             host: cas-yt21.exch.g01.fujitsu.local
+#             port: 587
+#             user: @@EXCHANGE_MAIL_USER@@
+#             password: @@EXCHANGE_MAIL_PASSWORD@@
+#IS_EMAIL_ACTION_END
+
+### This section is for audit logging
+xpack.security.audit.enabled: true
+xpack.security.audit.outputs: [ index, logfile ]
+

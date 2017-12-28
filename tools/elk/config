@@ -1,0 +1,18 @@
+export USER=elastic
+export PASSWORD=changeme
+export ELASTIC_HOST="127.0.0.1"
+export ELASTIC_PORT="9200"
+export ELASTIC_ENDPOINT="http://${ELASTIC_HOST}:${ELASTIC_PORT}"
+export KAFKA_HOST="192.168.33.101"
+export KAFKA_SERVERS="${KAFKA_HOST}:32768"
+export KAFKA_TOPICS="collective"
+
+export ELASTICSEARCH_IMAGE=docker.elastic.co/elasticsearch/elasticsearch-platinum:6.1.1
+export KIBANA_IMAGE=docker.elastic.co/kibana/kibana:6.1.1
+export LOGSTASH_IMAGE=docker.elastic.co/logstash/logstash-oss:6.1.1
+
+## Elastic Xpack Alerting settings
+# export IS_EMAIL_ACTION="True"
+# export EXCHANGE_MAIL_FROM=""
+# export EXCHANGE_MAIL_USER=""
+# export EXCHANGE_MAIL_PASSWORD=""
