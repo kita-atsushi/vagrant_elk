@@ -5,7 +5,7 @@ network.host: 0.0.0.0
 # set to 1 to allow single node clusters
 # Details: https://github.com/elastic/elasticsearch/pull/17288
 discovery.zen.minimum_master_nodes: 1
-xpack.license.self_generated.type: trial
+#xpack.license.self_generated.type: trial
 
 ### This section is for Alerting email action
 #IS_EMAIL_ACTION_START
@@ -24,6 +24,6 @@ xpack.license.self_generated.type: trial
 #IS_EMAIL_ACTION_END
 
 ### This section is for audit logging
-xpack.security.audit.enabled: true
-xpack.security.audit.outputs: [ index, logfile ]
+#xpack.security.audit.enabled: true
+#xpack.security.audit.outputs: [ index, logfile ]
 

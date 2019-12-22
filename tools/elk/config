@@ -7,9 +7,9 @@ export KAFKA_HOST="192.168.33.101"
 export KAFKA_SERVERS="${KAFKA_HOST}:32768"
 export KAFKA_TOPICS="collective"
 
-export ELASTICSEARCH_IMAGE=docker.elastic.co/elasticsearch/elasticsearch-platinum:6.1.1
-export KIBANA_IMAGE=docker.elastic.co/kibana/kibana:6.1.1
-export LOGSTASH_IMAGE=docker.elastic.co/logstash/logstash-oss:6.1.1
+export ELASTICSEARCH_IMAGE=docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+export KIBANA_IMAGE=docker.elastic.co/kibana/kibana:7.5.1
+export LOGSTASH_IMAGE=docker.elastic.co/logstash/logstash:7.5.1
 
 ## Elastic Xpack Alerting settings
 # export IS_EMAIL_ACTION="True"

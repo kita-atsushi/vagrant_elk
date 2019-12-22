@@ -1,24 +1,28 @@
 #!/bin/bash
-ENV_FILE="/vagrant/tools/.env"
+CWD="$(cd $(dirname $0) && pwd)"
+HOME_DIR="/home/vagrant"
+mkdir -p "${HOME_DIR}"
+LS_VERSION="7.2.1"
+LS_DOWNLOAD_URL="https://artifacts.elastic.co/downloads/logstash/logstash-${LS_VERSION}.tar.gz"
+LS_BASENAME=`basename "${LS_DOWNLOAD_URL}"`
 
 echo "@@@ Installing openjdk-8-jdk"
 apt-get install -y openjdk-8-jdk
 INSTALLED_JAVA_HOME="$(find /usr/lib/jvm/ -name "java" |grep 'openjdk' | grep -v 'jre'|xargs -i dirname "{}"|xargs -i dirname "{}")"
 export JAVA_HOME=${INSTALLED_JAVA_HOME}
 
-echo "@@@ Installing logstash"
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-apt-get install -y apt-transport-https
-echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
-apt-get update && apt-get install logstash
+wget "${LS_DOWNLOAD_URL}" -P /tmp
 
-LOG_STASH_PATH="$(find / -name "logstash" |grep '/bin/logstash'|xargs -i dirname "{}")"
-export PATH=$PATH:${LOG_STASH_PATH}
+tar -zxvf "/tmp/${LS_BASENAME}" -C "${HOME_DIR}"
 
-echo "@@@ Installing logstash plugin"
-logstash-plugin install logstash-filter-translate
+LOGSTASH_DIR="${HOME_DIR}/logstash-${LS_VERSION}"
+cp ${CWD}/files/azureblob_ai_messages.conf "${LOGSTASH_DIR}/config/"
+cp ${CWD}/files/azureblob_weblog.conf "${LOGSTASH_DIR}/config/"
+${LOGSTASH_DIR}/bin/logstash-plugin install logstash-filter-translate
+${LOGSTASH_DIR}/bin/logstash-plugin install logstash-input-azureblob
+cp ${CWD}/files/pipelines.yml "${LOGSTASH_DIR}/config/"
 
-# entry .env
-rm -f "${ENV_FILE}"
-echo "export PATH=$PATH:${LOG_STASH_PATH}" >>${ENV_FILE}
-echo "export JAVA_HOME=${INSTALLED_JAVA_HOME}" >>${ENV_FILE}
+echo "Done!"
+
+exit 0
+

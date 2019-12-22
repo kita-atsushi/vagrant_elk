@@ -7,7 +7,7 @@ function install_docker {
   DOCKER_GPG_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
   FINGER_PRINT="0EBFCD88"
   DOCKER_REPO_URL="https://download.docker.com/linux/ubuntu"
-  DOCKER_VERSION="17.09.0~ce-0~ubuntu"
+  #DOCKER_VERSION="17.09.0~ce-0~ubuntu"
 
   curl -fsSL ${DOCKER_GPG_KEY_URL} | apt-key add -
   apt-key fingerprint "${FINGER_PRINT}"
@@ -15,14 +15,14 @@ function install_docker {
      $(lsb_release -cs) \
         stable"
   apt update
-  apt install -y "docker-ce=${DOCKER_VERSION}"
+  apt install -y "docker-ce"
 }
 
-function setup_local_registry {
-  echo "@@@ Setting local registry"
-  DOCKER_SERVICE_FILE="/lib/systemd/system/docker.service"
-  sed -i -e "s#ExecStart=/usr/bin/dockerd.*#ExecStart=/usr/bin/dockerd -H fd:// --insecure-registry ${LOCAL_DOCKER_REGISTRY_IP}:5000#" "${DOCKER_SERVICE_FILE}"
-}
+#function setup_local_registry {
+#  echo "@@@ Setting local registry"
+#  DOCKER_SERVICE_FILE="/lib/systemd/system/docker.service"
+#  sed -i -e "s#ExecStart=/usr/bin/dockerd.*#ExecStart=/usr/bin/dockerd -H fd:// --insecure-registry ${LOCAL_DOCKER_REGISTRY_IP}:5000#" "${DOCKER_SERVICE_FILE}"
+#}
 
 function setup_proxy {
   local HTTP_PROXY=$1
@@ -45,7 +45,7 @@ function setup_proxy {
 
 ### Main
 install_docker
-setup_local_registry
+#setup_local_registry
 if [ ! -z "${http_proxy}" ]; then
   setup_proxy ${http_proxy}
 fi

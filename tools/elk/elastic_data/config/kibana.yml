@@ -1,10 +1,11 @@
 # Default Kibana configuration from kibana-docker.
 server.name: kibana
 server.host: "0"
-elasticsearch.url: http://elasticsearch:9200
+#elasticsearch.url: http://elasticsearch:9200
+elasticsearch.hosts: http://elasticsearch:9200
 elasticsearch.username: elastic
 elasticsearch.password: changeme
-xpack.monitoring.ui.container.elasticsearch.enabled: true
+#xpack.monitoring.ui.container.elasticsearch.enabled: true
 
 # Add Issue #41: SSL for outgoing requests from the Kibana Server (PEM formatted)
 #server.ssl.enabled: true

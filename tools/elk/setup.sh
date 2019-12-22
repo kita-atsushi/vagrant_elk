@@ -14,8 +14,8 @@ function uncomment_es_config_section {
 }
 
 function replace_es_config_param {
-	local PARAM_NAME="$1"
-	local PARAM_VALUE="$2"
+    local PARAM_NAME="$1"
+    local PARAM_VALUE="$2"
     sed -i "s/@@${PARAM_NAME}@@/${PARAM_VALUE}/g" "${CONFIG_FILE}"
 }
 

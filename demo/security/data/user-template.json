@@ -1,8 +1,0 @@
-{
-        "email": "arbitary-service@ncy.azxa.com",
-        "enabled": true,
-        "full_name": "@@FULL_NAME@@",
-        "password" : "changeme",
-        "metadata": {},
-        "roles": [@@ROLE_NAMES@@]
-}
